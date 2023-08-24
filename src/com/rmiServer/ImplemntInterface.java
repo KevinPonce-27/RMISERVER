@@ -97,6 +97,7 @@ public class ImplemntInterface implements RemoteInterface {
         }
     }
 
+    @Override
     public int actualizar(String usuario, String clave, String email, String telmovil) throws RemoteException {
         try {
             MyConnection myConnection = new MyConnection();
@@ -115,12 +116,13 @@ public class ImplemntInterface implements RemoteInterface {
         }
     }
 
+    @Override
     public int eliminar(String usuario) throws RemoteException {
         try {
             MyConnection myConnection = new MyConnection();
             PreparedStatement statement;
 
-            statement = myConnection.getConnection().prepareStatement("DELETE FROM usuarios WHERE usuario = '" + usuario + "'");
+            statement = myConnection.getConnection().prepareStatement("DELETE FROM usuarios WHERE usuario = ?");
             statement.setString(1, usuario);
 
             return statement.executeUpdate();

@@ -20,4 +20,5 @@ public interface RemoteInterface extends Remote {
     public int actualizar(String usuario, String clave, String email, String telmovil) throws RemoteException;
     public int eliminar(String usuario) throws RemoteException;
     
+    
 }
