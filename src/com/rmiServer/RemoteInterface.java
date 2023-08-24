@@ -16,6 +16,8 @@ public interface RemoteInterface extends Remote {
     double multiplicacion (double a, double b) throws RemoteException;
     double division (double a, double b) throws RemoteException;
     public List getUsuarios() throws RemoteException;
-    public int insertar(String usuario, String telefono, String direccion, String numtelmovil) throws RemoteException;
+    public int insertar(String usuario, String clave, String email, String telmovil) throws RemoteException;
+    public int actualizar(String usuario, String clave, String email, String telmovil) throws RemoteException;
+    public int eliminar(String usuario) throws RemoteException;
     
 }

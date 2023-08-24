@@ -16,7 +16,7 @@ import java.sql.Statement;
  */
 public class MyConnection{
     static String login = "postgres";
-    static String password = "123456";
+    static String password = "1234";
     static String url = "jdbc:postgresql://localhost:5432/postgres";
 
     private Statement statement;

@@ -7,6 +7,7 @@ package com.rmiServer;
 
 import com.db.MyConnection;
 import java.rmi.RemoteException;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
@@ -93,6 +94,39 @@ public class ImplemntInterface implements RemoteInterface {
         } catch (Exception ex) {
             System.out.println("Error al insertar datos: " + ex.getMessage());
             return -1;
+        }
+    }
+    
+    public int actualizar(String usuario, String clave, String email, String telmovil) throws RemoteException {
+    try {
+        MyConnection myConnection = new MyConnection();
+        PreparedStatement statement;
+        
+        statement = myConnection.getConnection().prepareStatement("UPDATE usuarios SET clave = ?, email = ?, telmovil = ? WHERE usuario = ?");
+        statement.setString(1, usuario);
+        statement.setString(2, clave);
+        statement.setString(3, email);
+        statement.setString(4, telmovil);
+        
+        return statement.executeUpdate();
+    } catch (Exception ex) {
+        System.out.println("Error al actualizar datos: " + ex.getMessage());
+        return -1;
+        }
+    }
+    
+    public int eliminar(String usuario) throws RemoteException {
+    try {
+        MyConnection myConnection = new MyConnection();
+        PreparedStatement statement;
+        
+        statement = myConnection.getConnection().prepareStatement("DELETE FROM usuarios WHERE usuario = ?");
+        statement.setString(1, usuario);
+        
+        return statement.executeUpdate();
+    } catch (Exception ex) {
+        System.out.println("Error al eliminar datos: " + ex.getMessage());
+        return -1;
         }
     }
 }
