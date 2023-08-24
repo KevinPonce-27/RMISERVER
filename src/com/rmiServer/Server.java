@@ -23,9 +23,10 @@ public class Server extends ImplemntInterface{
             ImplemntInterface obj = new ImplemntInterface();
             RemoteInterface obj1 = new ImplemntInterface();
             RemoteInterface stub = (RemoteInterface) UnicastRemoteObject.exportObject(obj,0);
+            String serverIP = "192.168.0.112";
             Registry registry = LocateRegistry.createRegistry(8888);
             registry.bind("metodosRmi", stub);
-            System.err.println("Server Listo");
+            System.err.println("Server Listo en " + serverIP);
         } catch (AlreadyBoundException | RemoteException e) {
             System.err.println("Server exception: " + e.toString());
         }

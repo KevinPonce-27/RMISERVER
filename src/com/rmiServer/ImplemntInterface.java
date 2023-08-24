@@ -103,13 +103,19 @@ public class ImplemntInterface implements RemoteInterface {
             MyConnection myConnection = new MyConnection();
             PreparedStatement statement;
 
-            statement = myConnection.getConnection().prepareStatement("UPDATE usuarios SET clave = ?, email = ?, telmovil = ? WHERE usuario = ?");
-            statement.setString(1, usuario);
-            statement.setString(2, clave);
-            statement.setString(3, email);
-            statement.setString(4, telmovil);
+            String query = "UPDATE usuarios SET clave = ?, email = ?, telmovil = ? WHERE usuario = ?";
+            statement = myConnection.getConnection().prepareStatement(query);
+            statement.setString(1, clave);
+            statement.setString(2, email);
+            statement.setString(3, telmovil);
+            statement.setString(4, usuario);
 
-            return statement.executeUpdate();
+            int rowsUpdated = statement.executeUpdate();
+            
+            statement.close();
+            myConnection.getConnection().close();
+
+            return rowsUpdated;
         } catch (Exception ex) {
             System.out.println("Error al actualizar datos: " + ex.getMessage());
             return -1;
